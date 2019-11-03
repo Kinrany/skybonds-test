@@ -8,8 +8,11 @@ import * as React from "react";
  * three digits after the floating point.
  */
 export function getProportions(numbers: string[]): string[] {
-  // TODO
-  return [".300", ".500", ".200"];
+  const parsed = numbers.map(parseFloat);
+  const sum = parsed.reduce((sum, x) => sum + x, 0);
+  const normalized = parsed.map(x => x / sum);
+  const formatted = normalized.map(x => x.toFixed(3));
+  return formatted;
 }
 
 export function SharedEquity() {

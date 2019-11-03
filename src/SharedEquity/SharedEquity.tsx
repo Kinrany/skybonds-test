@@ -3,13 +3,22 @@ import * as React from "react";
 /**
  * Replaces each number with the proportion of that number
  * relative to the sum of all numbers.
- * @param numbers An array of rational numbers represented as strings
+ * @param numbers An array of non-negative numbers represented as strings
  * @returns A new array of numbers represented as strings with
  * three digits after the floating point.
  */
 export function getProportions(numbers: string[]): string[] {
   const parsed = numbers.map(parseFloat);
+  if (parsed.some(isNaN)) {
+    throw new Error("All strings should be numbers.");
+  }
+  if (parsed.some(x => x < 0)) {
+    throw new Error("All numbers should be non-negative.");
+  }
   const sum = parsed.reduce((sum, x) => sum + x, 0);
+  if (sum === 0) {
+    return parsed.map(_ => "0.000");
+  }
   const normalized = parsed.map(x => x / sum);
   const formatted = normalized.map(x => x.toFixed(3));
   return formatted;

@@ -1,10 +1,23 @@
 import * as React from "react";
-import { getBondsData } from "./getBondsData";
+import { Bond, getBondsData } from "./getBondsData";
 // import { useAsync } from "react-async-hook";
 
 const createCachedGetBondsData = (): typeof getBondsData => {
-  // TODO
-  return getBondsData;
+  const cache = new Map<string, Promise<Bond>>();
+
+  const key = ({ date, isin }: { date: string; isin: string }) =>
+    `${date}-${isin}`;
+
+  return ({ date, isins }) => {
+    const newIsins = isins.filter(isin => !cache.has(key({ date, isin })));
+    const newBondsDataPromise = getBondsData({ date, isins: newIsins });
+    newIsins.forEach((isin, i) => {
+      const bondDataPromise = newBondsDataPromise.then(newData => newData[i]);
+      cache.set(key({ date, isin }), bondDataPromise);
+    });
+    const bondDataPromises = isins.map(isin => cache.get(key({ date, isin }))!);
+    return Promise.all(bondDataPromises);
+  };
 };
 
 export function BondsDataCache() {
@@ -49,11 +62,17 @@ export function BondsDataCache() {
         <h3>Query</h3>
         <p>
           <label>Date: </label>
-          <input onChange={e => onDateTextChange(e.target.value)} />
+          <input
+            onChange={e => onDateTextChange(e.target.value)}
+            defaultValue={date}
+          />
         </p>
         <p>
           <label>ISINs: </label>
-          <input onChange={e => onIsinsTextChange(e.target.value)} />
+          <input
+            onChange={e => onIsinsTextChange(e.target.value)}
+            defaultValue={isins.join(", ")}
+          />
         </p>
       </div>
 
@@ -87,7 +106,7 @@ export function BondsDataCache() {
         <h3>Commentary</h3>
         <p>Complexity: 4/10</p>
         <p>Estimated time: 1 hour</p>
-        <p>Actual time: </p>
+        <p>Actual time: start at 21:38, 20 minutes</p>
         <p>
           Big O: for M pairs <code>(date, isin)</code> in cache and for a query
           with N isins, lookup time is <code>O(N * log(M))</code>

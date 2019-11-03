@@ -1,4 +1,4 @@
-interface Bond {
+export interface Bond {
   isin: string;
   data: {
     price: number;

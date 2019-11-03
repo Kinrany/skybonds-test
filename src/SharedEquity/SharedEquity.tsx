@@ -60,7 +60,7 @@ export function SharedEquity() {
         <h3>Commentary</h3>
         <p>Complexity: 2/10</p>
         <p>Estimated time: 15 minutes</p>
-        <p>Actual time: </p>
+        <p>Actual time: 28 minutes</p>
         <p>Big O: </p>
         <p>Max size (see tests): </p>
       </div>

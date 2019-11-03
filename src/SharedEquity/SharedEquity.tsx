@@ -60,9 +60,16 @@ export function SharedEquity() {
         <h3>Commentary</h3>
         <p>Complexity: 2/10</p>
         <p>Estimated time: 15 minutes</p>
-        <p>Actual time: 28 minutes</p>
-        <p>Big O: </p>
-        <p>Max size (see tests): </p>
+        <p>Actual time: 56 minutes</p>
+        <p>
+          Big O: <code>O(numbers.length)</code>, I/O bound
+        </p>
+        <p>Max input size for execution under 5 seconds (see tests): 10^6</p>
+        <p>
+          <a href="https://github.com/Kinrany/skybonds-test/blob/master/src/SharedEquity/SharedEquity.tsx#L10-L25">
+            Source
+          </a>
+        </p>
       </div>
     </div>
   );

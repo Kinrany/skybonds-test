@@ -2,6 +2,8 @@ Solutions for SkyBonds' hiring test.
 
 Generated from [Kinrany/template](https://github.com/Kinrany/template).
 
+See https://kinrany.github.io/skybonds-test for a reactive demo.
+
 ### Stack
 
  * Rollup

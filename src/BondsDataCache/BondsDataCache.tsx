@@ -117,13 +117,15 @@ export function BondsDataCache() {
         <h3>Commentary</h3>
         <p>Complexity: 4/10</p>
         <p>Estimated time: 1 hour</p>
-        <p>Actual time: start at 21:38, 20 minutes</p>
+        <p>Actual time: 50 minutes</p>
         <p>
           Big O: for M pairs <code>(date, isin)</code> in cache and for a query
           with N isins, lookup time is <code>O(N * log(M))</code>
         </p>
         <p>
-          <a href="">Source</a>
+          <a href="https://github.com/Kinrany/skybonds-test/blob/master/src/BondsDataCache/BondsDataCache.tsx#L5-L25">
+            Source
+          </a>
         </p>
       </div>
     </div>

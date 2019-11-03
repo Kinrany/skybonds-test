@@ -1,0 +1,3 @@
+# same as .prettierignore
+public/dist
+package-lock.json

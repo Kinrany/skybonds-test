@@ -1,7 +1,8 @@
 {
-  "name": "template",
+  "name": "skybonds-test",
   "version": "0.1.0",
-  "description": "Kinrany's frontend project template",
+  "description": "Kinrany's solutions for SkyBonds' hiring test",
+  "repository": "https://github.com/Kinrany/skybonds-test",
   "main": "public/index.html",
   "scripts": {
     "build": "rollup -c",
@@ -16,6 +17,7 @@
     "@types/jest": "^24.0.21",
     "@types/react": "^16.9.10",
     "@types/react-dom": "^16.9.2",
+    "@types/react-router-dom": "^5.1.2",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "@typescript-eslint/parser": "^2.5.0",
     "eslint": "^6.5.1",
@@ -41,6 +43,7 @@
   },
   "dependencies": {
     "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react-dom": "^16.11.0",
+    "react-router-dom": "^5.1.2"
   }
 }

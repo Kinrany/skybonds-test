@@ -1,8 +1,6 @@
-## Template
+Solutions for SkyBonds' hiring test.
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Kinrany/template.svg)](https://greenkeeper.io/)
-
-Starter kit for static web apps
+Generated from [Kinrany/template](https://github.com/Kinrany/template).
 
 ### Stack
 

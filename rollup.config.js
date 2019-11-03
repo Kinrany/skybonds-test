@@ -20,7 +20,20 @@ export default {
       "process.env.NODE_ENV": `'${production ? "production" : "development"}'`,
     }),
     nodeResolve(),
-    commonjs(),
+    commonjs({
+      // https://github.com/reduxjs/react-redux/issues/643
+      namedExports: {
+        "node_modules/react/index.js": [
+          "Component",
+          "PureComponent",
+          "Fragment",
+          "Children",
+          "createElement",
+          "useState",
+        ],
+        "node_modules/react-is/index.js": ["isValidElementType"],
+      },
+    }),
     typescript(),
     production && terser(),
     !production && serve("public"),

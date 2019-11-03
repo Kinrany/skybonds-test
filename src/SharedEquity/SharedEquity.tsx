@@ -70,6 +70,11 @@ export function SharedEquity() {
             Source
           </a>
         </p>
+        <p>
+          <a href="https://github.com/Kinrany/skybonds-test/blob/master/src/SharedEquity/SharedEquity.test.ts">
+            Tests
+          </a>
+        </p>
       </div>
     </div>
   );

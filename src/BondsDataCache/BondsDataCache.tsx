@@ -2,7 +2,9 @@ import * as React from "react";
 import { Bond, getBondsData } from "./getBondsData";
 // import { useAsync } from "react-async-hook";
 
-const createCachedGetBondsData = (): typeof getBondsData => {
+export const createCachedGetBondsData = (
+  getData: typeof getBondsData
+): typeof getBondsData => {
   const cache = new Map<string, Promise<Bond>>();
 
   const key = ({ date, isin }: { date: string; isin: string }) =>
@@ -10,18 +12,22 @@ const createCachedGetBondsData = (): typeof getBondsData => {
 
   return ({ date, isins }) => {
     const newIsins = isins.filter(isin => !cache.has(key({ date, isin })));
-    const newBondsDataPromise = getBondsData({ date, isins: newIsins });
-    newIsins.forEach((isin, i) => {
-      const bondDataPromise = newBondsDataPromise.then(newData => newData[i]);
-      cache.set(key({ date, isin }), bondDataPromise);
-    });
+    if (newIsins.length > 0) {
+      const newBondsDataPromise = getData({ date, isins: newIsins });
+      newIsins.forEach((isin, i) => {
+        const bondDataPromise = newBondsDataPromise.then(newData => newData[i]);
+        cache.set(key({ date, isin }), bondDataPromise);
+      });
+    }
     const bondDataPromises = isins.map(isin => cache.get(key({ date, isin }))!);
     return Promise.all(bondDataPromises);
   };
 };
 
 export function BondsDataCache() {
-  const [getBondsDataCached] = React.useState(createCachedGetBondsData);
+  const [getBondsDataCached] = React.useState(() =>
+    createCachedGetBondsData(getBondsData)
+  );
 
   const [date, setDate] = React.useState("20190101");
   const [isins, setIsins] = React.useState<string[]>([
@@ -57,6 +63,11 @@ export function BondsDataCache() {
   return (
     <div>
       <h2>Cache for getBondsData</h2>
+
+      <blockquote>
+        I was going to provide a reactive UI for each problem as a bonus, but
+        ran out of time.
+      </blockquote>
 
       <div>
         <h3>Query</h3>

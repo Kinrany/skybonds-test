@@ -27,5 +27,5 @@ test("Value returned by cached getBondsData should be the same as the original v
 
   const cachedBondData = getBondsDataCached({ date: "date", isins: ["isin"] });
 
-  expect(cachedBondData).resolves.toStrictEqual(bondData);
+  expect(cachedBondData).resolves.toStrictEqual([bondData]);
 });

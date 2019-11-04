@@ -1,5 +1,5 @@
 import { createCachedGetBondsData } from "./BondsDataCache";
-import { getBondsData } from "./getBondsData";
+import getBondsData from "./getBondsData";
 
 test("getBondsData should only be called once with the same query", () => {
   const bondData = { isin: "isin", data: { price: 123, interestRate: 12 } };

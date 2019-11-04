@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Bond, getBondsData } from "./getBondsData";
 // import { useAsync } from "react-async-hook";
+import getBondsData, { Bond } from "./getBondsData";
 
 export const createCachedGetBondsData = (
   getData: typeof getBondsData
@@ -25,7 +25,7 @@ export const createCachedGetBondsData = (
 };
 
 export function BondsDataCache() {
-  const [getBondsDataCached] = React.useState(() =>
+  const [_getBondsDataCached] = React.useState(() =>
     createCachedGetBondsData(getBondsData)
   );
 
@@ -54,9 +54,9 @@ export function BondsDataCache() {
   };
 
   const onIsinsTextChange = (text: string) => {
-    const isins = text.split(",").map(s => s.trim());
-    if (isins.every(isin => isin.length === 12)) {
-      setIsins(isins);
+    const newIsins = text.split(",").map(s => s.trim());
+    if (newIsins.every(isin => isin.length === 12)) {
+      setIsins(newIsins);
     }
   };
 
@@ -72,14 +72,14 @@ export function BondsDataCache() {
       <div>
         <h3>Query</h3>
         <p>
-          <label>Date: </label>
+          Date:
           <input
             onChange={e => onDateTextChange(e.target.value)}
             defaultValue={date}
           />
         </p>
         <p>
-          <label>ISINs: </label>
+          ISINs:
           <input
             onChange={e => onIsinsTextChange(e.target.value)}
             defaultValue={isins.join(", ")}

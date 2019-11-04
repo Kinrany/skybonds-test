@@ -6,7 +6,7 @@ export interface Bond {
   };
 }
 
-export async function getBondsData({
+export default async function getBondsData({
   // we're ignoring date for the same of the example, so this function
   // will not always return the same data for the same query
   isins,

@@ -7,8 +7,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "lint-check": "prettier ./**/**.{js,jsx,ts,tsx,json,html} --check && eslint .",
-    "lint-fix": "prettier ./**/**.{js,jsx,ts,tsx,json,html} --write && eslint . --fix",
+    "lint-check": "prettier ./**/**.{js,jsx,ts,tsx,json,html} --check && eslint . --ext=js,jsx,ts,tsx",
+    "lint-fix": "prettier ./**/**.{js,jsx,ts,tsx,json,html} --write && eslint . --ext=js,jsx,ts,tsx --fix",
     "test": "jest --passWithNoTests"
   },
   "author": "kinrany",

@@ -45,9 +45,9 @@ test("getProportions works with real numbers", () => {
 test("getProportions can handle an array of length 10^6 in under 5 seconds", () => {
   const input = Array(1000 * 1000)
     .fill(0)
-    .map(_ => Math.random().toString());
+    .map(() => Math.random().toString());
   const t0 = process.hrtime();
   getProportions(input);
   const [s, ns] = process.hrtime(t0);
-  expect(s + ns / Math.pow(10, 9)).toBeLessThan(5);
+  expect(s + ns / 10 ** 9).toBeLessThan(5);
 });

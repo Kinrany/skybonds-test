@@ -1,5 +1,6 @@
 import * as React from "react";
 import useAsync from "src/useAsync";
+import DatePicker from "./DatePicker";
 import getBondsData, { Bond } from "./getBondsData";
 
 export const createCachedGetBondsData = (
@@ -41,16 +42,6 @@ export function BondsDataCache(): JSX.Element {
   );
   const bondsData = useAsync(getBondsDataCallback);
 
-  const onDateTextChange = (text: string) => {
-    if (text.match(/\d{8}/)) {
-      setDate(text);
-    }
-  };
-
-  const incrementDate = () => {
-    setDate(date => (parseInt(date, 10) + 1).toString());
-  };
-
   const onIsinsTextChange = (text: string) => {
     const newIsins = text.split(",").map(s => s.trim());
     if (newIsins.every(isin => isin.length === 12)) {
@@ -65,19 +56,7 @@ export function BondsDataCache(): JSX.Element {
       <div>
         <h3>Query</h3>
         <p>
-          Date:
-          <input
-            onChange={e => onDateTextChange(e.target.value)}
-            defaultValue={date}
-            style={{ marginLeft: 5 }}
-          />
-          <button
-            type="button"
-            onClick={incrementDate}
-            style={{ marginLeft: 5 }}
-          >
-            +
-          </button>
+          <DatePicker onDateChange={setDate} />
         </p>
         <p>
           ISINs:

@@ -1,5 +1,5 @@
 import * as React from "react";
-// import { useAsync } from "react-async-hook";
+import useAsync from "src/useAsync";
 import getBondsData, { Bond } from "./getBondsData";
 
 export const createCachedGetBondsData = (
@@ -24,8 +24,8 @@ export const createCachedGetBondsData = (
   };
 };
 
-export function BondsDataCache() {
-  const [_getBondsDataCached] = React.useState(() =>
+export function BondsDataCache(): JSX.Element {
+  const [getBondsDataCached] = React.useState(() =>
     createCachedGetBondsData(getBondsData)
   );
 
@@ -34,18 +34,12 @@ export function BondsDataCache() {
     "XS0971721963",
     "RU000A0JU4L3",
   ]);
-  // const bondsData = useAsync(() => getBondsDataCached({ date, isins }), [
-  //   date,
-  //   isins,
-  // ]);
-  const bondsData = {
-    loading: undefined,
-    error: undefined,
-    result: [
-      { isin: "XS0971721963", data: { price: 1234, interestRate: 53 } },
-      { isin: "RU000A0JU4L3", data: { price: 342, interestRate: 2 } },
-    ],
-  };
+
+  const getBondsDataCallback = React.useCallback(
+    () => getBondsDataCached({ date, isins }),
+    [date, getBondsDataCached, isins]
+  );
+  const bondsData = useAsync(getBondsDataCallback);
 
   const onDateTextChange = (text: string) => {
     if (text.match(/\d{8}/)) {
@@ -89,9 +83,9 @@ export function BondsDataCache() {
 
       <div>
         <h3>Data</h3>
-        {bondsData.loading && "Loading..."}
-        {bondsData.error && "Error!"}
-        {bondsData.result && (
+        {"loading" in bondsData && "Loading..."}
+        {"err" in bondsData && "Error!"}
+        {"ok" in bondsData && (
           <table>
             <thead>
               <tr>
@@ -101,7 +95,7 @@ export function BondsDataCache() {
               </tr>
             </thead>
             <tbody>
-              {bondsData.result.map(bond => (
+              {bondsData.ok.map(bond => (
                 <tr key={bond.isin}>
                   <td>{bond.isin}</td>
                   <td>{bond.data.price}</td>

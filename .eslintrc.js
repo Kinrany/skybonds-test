@@ -5,7 +5,9 @@ module.exports = {
     "jest/globals": true,
   },
   extends: [
+    "airbnb/hooks",
     "airbnb-typescript",
+    "plugin:import/typescript",
     "prettier",
     "prettier/@typescript-eslint",
     "prettier/react",
@@ -22,9 +24,8 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint", "prettier", "jest"],
+  plugins: ["prettier", "jest"],
   rules: {
-    "prettier/prettier": ["error"],
     "@typescript-eslint/no-unused-vars": ["error", { varsIgnorePattern: "^_" }],
   },
 };

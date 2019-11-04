@@ -30,6 +30,8 @@ export default {
           "Children",
           "createElement",
           "useState",
+          "useEffect",
+          "useCallback",
         ],
         "node_modules/react-is/index.js": ["isValidElementType"],
       },

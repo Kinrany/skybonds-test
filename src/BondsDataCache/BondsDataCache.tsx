@@ -1,5 +1,5 @@
 import * as React from "react";
-import useAsync from "../useAsync";
+import useAsync from "src/useAsync";
 import getBondsData, { Bond } from "./getBondsData";
 
 export const createCachedGetBondsData = (

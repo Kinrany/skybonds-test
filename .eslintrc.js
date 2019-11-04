@@ -7,7 +7,6 @@ module.exports = {
   extends: [
     "airbnb/hooks",
     "airbnb-typescript",
-    "plugin:import/typescript",
     "prettier",
     "prettier/@typescript-eslint",
     "prettier/react",
@@ -25,7 +24,12 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["prettier", "jest"],
-  rules: {
-    "@typescript-eslint/no-unused-vars": ["error", { varsIgnorePattern: "^_" }],
+  settings: {
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+        moduleDirectory: ["node_modules", "."],
+      },
+    },
   },
 };

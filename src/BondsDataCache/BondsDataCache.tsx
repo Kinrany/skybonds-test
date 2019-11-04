@@ -58,11 +58,6 @@ export function BondsDataCache(): JSX.Element {
     <div>
       <h2>Cache for getBondsData</h2>
 
-      <blockquote>
-        I was going to provide a reactive UI for each problem as a bonus, but
-        ran out of time.
-      </blockquote>
-
       <div>
         <h3>Query</h3>
         <p>

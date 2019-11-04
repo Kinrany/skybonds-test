@@ -24,6 +24,6 @@ export default async function getBondsData({
         },
       }));
       resolve(result);
-    }, Math.random() * 1000);
+    }, 1000 + Math.random() * 1000);
   });
 }

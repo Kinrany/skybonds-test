@@ -24,6 +24,9 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["prettier", "jest"],
+  rules: {
+    "no-shadow": "off",
+  },
   settings: {
     "import/resolver": {
       node: {

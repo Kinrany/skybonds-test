@@ -47,6 +47,10 @@ export function BondsDataCache(): JSX.Element {
     }
   };
 
+  const incrementDate = () => {
+    setDate(date => (parseInt(date, 10) + 1).toString());
+  };
+
   const onIsinsTextChange = (text: string) => {
     const newIsins = text.split(",").map(s => s.trim());
     if (newIsins.every(isin => isin.length === 12)) {
@@ -65,13 +69,22 @@ export function BondsDataCache(): JSX.Element {
           <input
             onChange={e => onDateTextChange(e.target.value)}
             defaultValue={date}
+            style={{ marginLeft: 5 }}
           />
+          <button
+            type="button"
+            onClick={incrementDate}
+            style={{ marginLeft: 5 }}
+          >
+            +
+          </button>
         </p>
         <p>
           ISINs:
           <input
             onChange={e => onIsinsTextChange(e.target.value)}
             defaultValue={isins.join(", ")}
+            style={{ marginLeft: 5 }}
           />
         </p>
       </div>
